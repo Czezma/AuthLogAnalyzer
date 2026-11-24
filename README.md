@@ -4,6 +4,12 @@ Sentinel is a command-line application written in C++ designed to analyze Linux 
 
 This project is being developed as a personal cybersecurity and programming project to strengthen my C++ skills while exploring security monitoring, log analysis, and threat detection.
 
+## Sample Log File
+
+Sentinel included `auth_sample.log`, a sample Linux authentication log containing simulated login activity. This file is for testing and demonstration purposes. 
+
+The sample data is fabricated and does not contain real authentication records.
+
 ## Planned Features
 
 - [x] Interactive command-line menu
