@@ -12,6 +12,9 @@ int getIntegerInput(std::string prompt);
 // for formatting purposes.
 void printBar(int width);
 
+// Centers text within width characters.
+void centerText(std::string text, int width);
+
 // Displays the menu in main.
 void displayMenu();
 
