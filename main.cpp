@@ -2,7 +2,6 @@
 #include <fstream>
 #include "utilities.h"
 #include "log_reader.h"
-using namespace std;
 
 int main() {
 
@@ -12,12 +11,12 @@ int main() {
 
     do {
 
-        ifstream logFile;
-        string logFileName, item;
+        std::ifstream logFile;
+        std::string logFileName, item;
 
         // Display the program name.
         printBar(50);
-        centerText("SENTINEL - Authentication Log Analyzer\n", 50);
+        centerText("SENTINEL - Authentication Log Analyzer", 50);
         printBar(50);
 
         displayMenu();
@@ -31,38 +30,35 @@ int main() {
             case 1:
 
                 // Prompt for file.
-                cout << "\nPlease enter the log file's name: ";
-                cin >> logFileName;
+                std::cout << "\nPlease enter the log file's name: ";
+                std::getline(std::cin, logFileName);
 
-                // Open input stream with the
-                // file name.
                 logFile.open(logFileName);
 
                 // If it fails,
                 if (!logFile.is_open()) {
 
-                    // Print err and exit program early.
-                    cerr << "Log file failed to open. Please try again.\n";
-                    return -1;
+                    // Print err and break out.
+                    std::cerr << "Log file failed to open. Please try again.\n";
+                    break;
                 } 
 
                 // If the file is empty,
-                if (isFileEmpty(logFileName)) {
+                if (isFileEmpty(logFile)) {
 
-                    // Print err and exit program early.
-                    cerr << "Log file is empty. Please try again.\n";
-                    return -1;
-                };
+                    // Print err and break out.
+                    std::cerr << "Log file is empty. Please try again.\n";
+                    break;
+                }
 
                 // While the file is being 
                 // read in line-by-line,
-                while (getline(logFile, item)) {
+                while (std::getline(logFile, item)) {
 
                     // Print each item.
-                    cout << item << "\n";
+                    std::cout << item << "\n";
                 }
 
-                // Close the file.
                 logFile.close();
                 break;
 
@@ -71,12 +67,12 @@ int main() {
                 break;
 
             case 3:
-                cout << "Exiting program...\n";
+                std::cout << "Exiting program...\n";
                 break;
                 
 
             default: 
-                cout << "Invalid choice. Please try again.\n";
+                std::cout << "Invalid choice. Please try again.\n";
         }
 
     } while (choice != 3);

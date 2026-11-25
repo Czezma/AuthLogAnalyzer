@@ -6,7 +6,7 @@ This project is being developed as a personal cybersecurity and programming proj
 
 ## Sample Log File
 
-Sentinel included `auth_sample.log`, a sample Linux authentication log containing simulated login activity. This file is for testing and demonstration purposes. 
+Sentinel includes `auth_sample.log`, a sample Linux authentication log containing simulated login activity. This file is for testing and demonstration purposes. 
 
 The sample data is fabricated and does not contain real authentication records.
 
@@ -15,7 +15,7 @@ The sample data is fabricated and does not contain real authentication records.
 - [x] Interactive command-line menu
 - [x] Input validation
 - [x] Modular function organization
-- [ ] Authentication log file reading
+- [x] Authentication log file reading
 - [ ] Log entry parsing
 - [ ] Failed login tracking
 - [ ] IP-based login attempt analysis

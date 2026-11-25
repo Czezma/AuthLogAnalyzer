@@ -1,6 +1,7 @@
 #include "utilities.h"
 #include <iostream>
 #include <string>
+#include <limits>
 
 /* Provides input validation for 
    the menu choice in main. */
@@ -11,23 +12,22 @@ int getIntegerInput(std::string prompt) {
 
     while (true) {
 
-        // Display the prompt.
         std::cout << prompt;
 
         // If the input is successful,
         if (std::cin >> input) {
 
             // Send the input back out.
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             return input;
         }
 
-        // If it fails, display err.
+        // Display err.
         std::cout << "Invalid input. Please enter a number.\n";
 
         // Clear the input buffer.
         std::cin.clear();
-        std::cin.ignore(10000, '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 
@@ -41,13 +41,19 @@ void printBar(int width) {
 // Centers text within width characters.
 void centerText(std::string text, int width) {
 
+    // Width cannot be less than zero.
+    if (width < 0) {
+        std::cout << "Width cannot be less than 0. Please try again.\n";
+
+        return;
+    }
+
     // Calculate the padding. 
-    int padding = (width - text.length()) / 2;
+    int padding = (width - static_cast<int>(text.length())) / 2;
 
     // If the padding goes negative,
     if (padding < 0) {
 
-        // Let it be zero.
         padding = 0;
     }
 

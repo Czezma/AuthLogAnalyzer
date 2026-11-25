@@ -4,5 +4,5 @@
 
 // Checks if the log file is empty or not;
 // returns boolean value.
-bool isFileEmpty(const std::string& filename);
+bool isFileEmpty(std::ifstream& fileStream);
 #endif 
