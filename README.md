@@ -16,7 +16,7 @@ The sample data is fabricated and does not contain real authentication records.
 - [x] Input validation
 - [x] Modular function organization
 - [x] Authentication log file reading
-- [ ] Log entry parsing
+- [x] Log entry parsing
 - [ ] Failed login tracking
 - [ ] IP-based login attempt analysis
 - [ ] Brute-force activity detection
@@ -35,3 +35,19 @@ Sentinel is currently under development. Features will be added incrementally as
 ## Purpose
 
 The goal of Sentinel is to build a practical understanding of C++ programming and the fundamentals of security monitoring through the development of a functional command-line security utility.
+
+## Build & Run
+
+Compile with `g++` (C++17 or newer):
+
+```bash
+g++ -std=c++17 -Wall -Wextra *.cpp -o sentinel
+```
+
+Run the program:
+
+```bash
+./sentinel
+```
+
+*(On Windows PowerShell, run `.\sentinel.exe`.)* 
