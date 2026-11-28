@@ -1,8 +1,9 @@
+#include "utilities.h"
+#include "log_reader.h"
+#include "log_parser.h"
 #include <iostream>
 #include <string>
 #include <vector>
-#include "utilities.h"
-#include "log_reader.h"
 
 int main() {
 
@@ -46,11 +47,24 @@ int main() {
                         std::cout << "The log file is empty. Please populate the file with log information and try again.\n";
                         break;
 
-                    case ReadResult::SUCCESS: 
-                        for (const std::string& line : logLines) {
-                            std::cout << line << "\n";
+                    case ReadResult::SUCCESS: {
+
+                        // Holds the valid entries
+                        std::vector<LogEntry> entries = parseLogLines(logLines);
+
+                        // Going through each line,
+                        for (const LogEntry& entry : entries) {
+
+                            // Convert AuthClass enum to str and print each component of the log to screen.
+                            std::cout << entry.timestamp << " " << entry.username 
+                                      << " " << statusToString(entry.status) << " " 
+                                      << entry.ipAddress << " " 
+                                      << entry.port << "\n";
                         }
+                        
+                        std::cout << "Parsed " << entries.size() << " of " << logLines.size() << " entries.\n";
                         break;
+                    }
                 }
                 break;
             }
