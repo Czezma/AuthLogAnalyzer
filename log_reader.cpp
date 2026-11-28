@@ -1,10 +1,30 @@
 #include "log_reader.h"
 #include <fstream>
 
-// Checks if the log file is empty; returns bool.
-bool isFileEmpty(std::ifstream& fileStream) {
+// Takes in the file path and output lines, returns the Status enum.
+ReadResult readLogFile(const std::string& filePath, std::vector<std::string>& outputLines) {
 
-    // Check the file for an end-of-file bit. If true, is empty.
-    // if false, not empty. 
-    return fileStream.peek() == std::ifstream::traits_type::eof();
+    // In case caller reuses
+    // same vector.
+    outputLines.clear();
+
+    std::ifstream inputFile(filePath);
+    std::string line;
+
+    if (!inputFile) {
+
+        return ReadResult::FAILED_TO_OPEN;
+    }
+
+    // Push back every line in the input file into the outputLines vector.
+    while (std::getline(inputFile, line)) {
+        outputLines.push_back(line);
+    }
+
+    if (outputLines.empty()) {
+
+        return ReadResult::EMPTY_FILE;
+    } else {
+        return ReadResult::SUCCESS;
+    }
 }
